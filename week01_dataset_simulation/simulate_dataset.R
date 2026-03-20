@@ -36,4 +36,26 @@ sex <- factor(raw_sex)
 # --- Validation ---
 table(sex)  # Shows counts of each
 str(sex)    # Shows the internal structure (Factor w/ 2 levels)
+# --- BMI Variable (Biological Relationship) ---
+# We assume a base BMI of 20, then add 0.1 for every year of age
+# plus some random variation (noise) so everyone isn't a perfect line
+bmi_mean <- 20 + (0.1 * final_ages)
+
+# Generate BMI using the age-dependent mean
+# n is already defined as 500
+bmi <- rnorm(n, mean = bmi_mean, sd = 3)
+
+# Round to 1 decimal place (standard for clinical data)
+bmi <- round(bmi, 1)
+
+# --- Validation ---
+summary(bmi)
+# Correlation check: Should be positive (~0.3 to 0.5)
+cor(final_ages, bmi) 
+
+# Visualize the relationship
+plot(final_ages, bmi, 
+     main="Relationship between Age and BMI",
+     xlab="Age", ylab="BMI", 
+     col="steelblue", pch=16)
 
