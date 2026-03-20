@@ -22,4 +22,18 @@ final_ages <- pmin(pmax(rounded_ages, 20), 80)
 # --- Verification ---
 mean(final_ages)
 range(final_ages)
+# --- Sex Variable ---
+# 1. Define the possible outcomes
+sex_options <- c("Male", "Female")
+
+# 2. Sample from options n times with a 50/50 probability
+# replace = TRUE allows "Male" or "Female" to be picked more than once
+raw_sex <- sample(sex_options, size = n, replace = TRUE, prob = c(0.5, 0.5))
+
+# 3. Convert to a factor (essential for statistical modeling in R)
+sex <- factor(raw_sex)
+
+# --- Validation ---
+table(sex)  # Shows counts of each
+str(sex)    # Shows the internal structure (Factor w/ 2 levels)
 
