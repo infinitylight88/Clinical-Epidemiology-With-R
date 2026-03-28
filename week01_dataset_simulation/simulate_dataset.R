@@ -59,3 +59,26 @@ plot(final_ages, bmi,
      xlab="Age", ylab="BMI", 
      col="steelblue", pch=16)
 
+# --- Smoking Status Simulation for Week 1 Dataset ---
+
+# 1️⃣ Define categories of smoking behavior
+# "Never": never smoked, "Former": previously smoked, "Current": currently smokes
+status_levels <- c("Never", "Former", "Current")
+
+# 2️⃣ Assign approximate probabilities based on adult population
+# These numbers are realistic epidemiological proportions
+probs <- c(0.55, 0.25, 0.20)
+
+# 3️⃣ Generate the smoking status for each participant
+# n = 500 (sample size), replace = TRUE allows repeated values
+smoking_status <- sample(status_levels, size = n, replace = TRUE, prob = probs)
+
+# 4️⃣ Convert to a factor (important for modeling and stats later)
+smoking_status <- factor(smoking_status, levels = status_levels)
+
+# 5️⃣ Quick validation: counts of each category
+table(smoking_status)
+
+# 6️⃣ Optional: Check proportions to see if they roughly match your target probabilities
+prop.table(table(smoking_status))
+
